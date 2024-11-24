@@ -1,17 +1,9 @@
+                      '15 sql tasks liabrary_management'
 
-SELECT * FROM return_status;
-SELECT * FROM issued_status;
-SELECT * FROM members;
-SELECT * FROM employees;
-SELECT * FROM books;
-SELECT * FROM branch;
-
-
-
-#task one Task 1. Create a New Book Record -- "978-1-60129-456-2', 
-#'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee',
- #'J.B. Lippincott & Co.')"----------------------------
-
+Task 1:
+Create a New Book Record -- "978-1-60129-456-2', 'To Kill a Mockingbird', 
+'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
+'''sql
 insert into books
 (isbn,book_title,category,rental_price, status, author,publisher)
 values
@@ -22,59 +14,70 @@ values
   'yes', 
  'Harper Lee', 
  'J.B.Lippincott & Co.');
+'''
  
  
- select count(*) from books;
- # Task 2: Update an Existing Member's Address
+ 
+Task 2: Update an Existing Member's Address
 select * from members;
+	
+'''sql	
 update members
 set member_address="567 saim main street" 
-where member_id = 'C101';
+where member_id = 'C101'
+'''
 
-# task 3-------Task 3: Delete a Record from the Issued Status Table
- -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table.
+Task 3: Delete a Record from the Issued Status Table
+Objective: Delete the record with issued_id = 'IS121' 
+from the issued_status table
 
-
+'''sql
 SET sql_safe_updates=0;
 DELETE FROM issued_status
 WHERE   issued_id =   'IS107';
+'''
 
 
-#task 4------------Task 4: Retrieve All Books Issued by a Specific Employee -- 
-#-----Objective: Select all books issued by the employee with emp_id = 'E101'.
-
+Task 4: Retrieve All Books Issued by a Specific Employee 
+Objective: Select all books issued by the employee with emp_id = 'E101'
+	
+'''sql
 select issued_book_name
 from issued_status
-where issued_emp_id = 'E104';
+where issued_emp_id = 'E104'
+'''
 
-#Task 5: List Members Who Have Issued More Than One Book --
- #Objective: Use GROUP BY to find members who have issued more than one book.
- 
+Task 5: List Members Who Have Issued More Than One Book --
+Objective: Use GROUP BY to find members who have issued more than one book
+	
+ '''sql
 SELECT issued_emp_id
 FROM issued_status
 GROUP BY issued_emp_id
-HAVING COUNT(issued_id)>1;
+HAVING COUNT(issued_id)>1
+'''
  
-#task 6   CTAS (Create Table As Select)
-#Task 6: Create Summary Tables: Used CTAS to generate new tables based on query results 
-#each book and total book_issued_cn
+task 6   CTAS (Create Table As Select)
+Task 6:
+Create Summary Tables: Used CTAS to generate new tables based on query results 
+each book and total book_issued_cn
 
+'''sql	
 CREATE TABLE book_issued_cnt AS
 SELECT a.isbn, a.book_title, COUNT(ist.issued_id) AS issue_count
 FROM issued_status as ist
 JOIN books as a
 ON ist.issued_book_isbn = a.isbn
-GROUP BY a.isbn, a.book_title;
-
+GROUP BY a.isbn, a.book_title;	
 select * from book_issued_cnt;
-
-#Task 7. Retrieve All Books in a Specific Category:
-
+'''
+Task 7. Retrieve All Books in a Specific Category:
+'''sql
 select book_title from books
 where category ='children';
-
-#Task 8: Find Total Rental Income by Category:
-
+'''
+Task 8: Find Total Rental Income by Category:
+'''sql
 select *from books;
 select * from issued_status;
 select a.category,sum(rental_price)
@@ -82,14 +85,18 @@ from books as a
 join issued_status as b
 on a.isbn=b.issued_book_isbn
 group by category;
+'''
 
-# task 9 ----List Members Who Registered in the Last 180 Days:
-
+task 9 List Members Who Registered in the Last 180 Days:
+'''sql
 SELECT member_name from members
 where DATE_SUB("2024-05-01", INTERVAL -180 day);
+'''
 
-# task 10 List Employees with Their Branch Manager's Name and their branch details:
-
+task 10: 
+	List Employees with Their Branch Manager's Name and their branch details:
+	
+'''sql
 select 
  e1.emp_id,
     e1.emp_name,
@@ -110,14 +117,14 @@ ON e2.emp_id = b.manager_id;
 create table expensive_book as 
 select book_title from books
 where rental_price>7.00;
+'''
 
+#Advanced queries ---
+Task 12: Identify Members with Overdue Books
+Write a query to identify members who have overdue books (assume a 30-day return period).
+Display the member's_id, member's name, book title, issue date, and days overdue.#----
 
-#Advanced queries 
-------#Task 12: Identify Members with Overdue Books
-#-----Write a query to identify members who have overdue books (assume a 30-day return period).
- #---Display the member's_id, member's name, book title, issue date, and days overdue.#----
-
- 
+'''sql 
 select issued_member_id,issued_book_name,issued_date,member_name,
 current_date()-issued_date as overdue_date
 from issued_status as a
@@ -129,13 +136,13 @@ ON a.issued_id = c.return_issued_id
 where c.return_date is null
 and
 (current_date()-issued_date)>100;
+'''
+Task 13: Branch Performance Report
+Create a query that generates a performance report for each branch, 
+showing the number of books issued, the number of books returned, 
+and the total revenue generated from book rentals.
 
-#Task 13: Branch Performance Report
-#Create a query that generates a performance report for each branch, 
-#showing the number of books issued, the number of books returned, 
-#and the total revenue generated from book rentals.
-
-
+'''sql
 CREATE TABLE branch_reports
 AS
 select br.branch_id,br.manager_id,
@@ -152,30 +159,30 @@ on br.branch_id = emp.branch_id
 join books as bks
 on bks.isbn=iss.issued_book_isbn
 group by 1,2;
-
+'''
 SELECT * FROM branch_reports;
 
-#----Task 14: CTAS: Create a Table of Active Members
-#Use the CREATE TABLE AS (CTAS) statement to create a new table active_members 
-#containing members who have issued at least one book in the last 6 months.
+Task 14: CTAS: Create a Table of Active Members
+Use the CREATE TABLE AS (CTAS) statement to create a new table active_members 
+containing members who have issued at least one book in the last 6 months.
 
-
-  CREATE TABLE active_members 
-  AS
+'''sql
+CREATE TABLE active_members 
+AS
 select *from issued_status
 where issued_member_id in(
-                          select distinct (issued_member_id)
-						  from issued_status
-						  where issued_date <=current_date()+interval 2 month) ;
+	                    select distinct (issued_member_id)
+			     from issued_status
+			 where issued_date <=current_date()+interval 2 month) ;
                           
 SELECT *FROM ACTIVE_MEMBERS;
+'''
 
+Task 15: Find Employees with the Most Book Issues Processed
+Write a query to find the top 3 employees who have processed the most book issues. 
+Display the employee name, number of books processed, and their branch.
 
-#Task 15: Find Employees with the Most Book Issues Processed
-#Write a query to find the top 3 employees who have processed the most book issues. 
-#Display the employee name, number of books processed, and their branch.
-
-
+'''sql
 CREATE TABLE TOP_3_EMPLOYEES 
 AS(
 SELECT 
@@ -194,6 +201,6 @@ ORDER BY COUNT(ist.issued_id) DESC
 LIMIT 3);
 
 SELECT * FROM TOP_3_EMPLOYEES ;
-
+'''
 
 
