@@ -1,5 +1,2 @@
 LIABRARY MANAGEMENT 
-'''SQL
 
-
-'''
