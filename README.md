@@ -7,6 +7,8 @@ Create and populate the database with tables for branches, employees, members, b
 ## CRUD Operations: 
 Perform Create, Read, Update, and Delete operations on the data.
 
+# Objectives Project Structure
+
 
 
 
