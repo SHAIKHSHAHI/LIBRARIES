@@ -18,7 +18,7 @@
 #  Project Structure
 ## 1. Database Setup
 ```
-
+<span style="color: red;">
 DROP TABLE IF EXISTS branch;
 CREATE TABLE branch
 (
@@ -27,7 +27,7 @@ CREATE TABLE branch
             branch_address VARCHAR(30),
             contact_no VARCHAR(15)
 );
-
+</span>
 
 -- Create table "Employee"
 DROP TABLE IF EXISTS employees;
