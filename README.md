@@ -8,10 +8,10 @@ Create and populate the database with tables for branches, employees, members, b
 Perform Create, Read, Update, and Delete operations on the data.
 
 #  Project Structure
-## 1. Database Setup
-![image](https://github.com/user-attachments/assets/356f4267-e854-4255-b54f-a716f5ae2bef)
+## 1. Table Creation: 
+Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships.
 
-:
+
 ```
 CREATE DATABASE library_db;
 
