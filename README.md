@@ -9,7 +9,7 @@ Perform Create, Read, Update, and Delete operations on the data.
 
 #  Project Structure
 ## 1. Table Creation: 
-Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships.
+* *Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships.
 
 
 ```
