@@ -66,4 +66,5 @@ CREATE TABLE books
 
 **Table Creation:** Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships
 CREATE DATABASE library_db;
+
 **Database Creation:** Created a database named library_db.
