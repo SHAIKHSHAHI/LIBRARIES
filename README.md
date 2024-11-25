@@ -1,7 +1,11 @@
 # Library Management System 
 ## ![Uploading image.png…](https://github.com/najirh/Library-System-Management---P2/blob/main/library.jpg)
+## ![Uploading image.png…](https://www.google.com/imgres?q=library%20management%20system&imgurl=https%3A%2F%2Fwww.elibrarysoftware.com%2Fimg%2Flibrary-shelf.jpg&imgrefurl=https%3A%2F%2Fwww.elibrarysoftware.com%2Flibrary-management-system.html&docid=Nvl7B5MpVMGLFM&tbnid=hTZuoTs47tE_fM&vet=12ahUKEwiIzrSn0PaJAxVl2DgGHWT8NH4QM3oECDMQAA..i&w=550&h=366&hcb=2&ved=2ahUKEwiIzrSn0PaJAxVl2DgGHWT8NH4QM3oECDMQAA)
+
+
 
 # Objectives
+
 **1.Table Creation:** Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships.
 
 **2. CRUD Operations:** Perform Create, Read, Update, and Delete operations on the data.
