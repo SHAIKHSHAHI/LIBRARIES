@@ -63,11 +63,11 @@ CREATE TABLE books
             publisher VARCHAR(30)
 );
 ```
-- **Table Creation:**
-* **Database Creation:**
-+ Thomas Jefferson
-
-**Table Creation:** Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships
+- **Table Creation:** Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships
 CREATE DATABASE library_db;
+* **Database Creation:** Created a database named library_db.
 
-**Database Creation:** Created a database named library_db.
+**1.Create:** Inserted sample records into the books table.
+**2.Read:** Retrieved and displayed data from various tables.
+**3.Update:** Updated records in the employees table.
+**4.Delete:** Removed records from the members table as needed.
