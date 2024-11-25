@@ -63,6 +63,9 @@ CREATE TABLE books
             publisher VARCHAR(30)
 );
 ```
+- George Washington
+* John Adams
++ Thomas Jefferson
 
 **Table Creation:** Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships
 CREATE DATABASE library_db;
