@@ -63,8 +63,8 @@ CREATE TABLE books
             publisher VARCHAR(30)
 );
 ```
-- George Washington
-* John Adams
+- **Table Creation:**
+* **Database Creation:**
 + Thomas Jefferson
 
 **Table Creation:** Created tables for branches, employees, members, books, issued status, and return status. Each table includes relevant columns and relationships
