@@ -1,8 +1,5 @@
-Library Management System using SQL Project --P2
-Project Overview
-Project Title: Library Management System
-Level: Intermediate
-Database: library_db
+
+
 SELECT * FROM return_status;
 SELECT * FROM issued_status;
 SELECT * FROM members;
