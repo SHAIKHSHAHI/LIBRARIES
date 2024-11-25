@@ -1,6 +1,6 @@
 # Library Management System 
-## ![Uploading image.png…](https://github.com/najirh/Library-System-Management---P2/blob/main/library.jpg)
-## ![Uploading image.png…](https://github.com/SHAIKHSHAHI/LIBRARIES/blob/91b8df6808914c2239f281b97261a4d3b5fd2da4/images%20(4).jpg)
+## ![Uploading image.png…]()
+
 
 # Objectives
 
