@@ -17,7 +17,8 @@
 
 #  Project Structure
 ## 1. Database Setup
-```
+
+```sql
 
 DROP TABLE IF EXISTS branch;
 CREATE TABLE branch
@@ -82,7 +83,7 @@ CREATE DATABASE library_db;
 **4.Delete:** Removed records from the members table as needed.
 
 **Task 1. Create a New Book Record** -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
-```
+```sql
 INSERT INTO books(isbn, book_title, category, rental_price, status, author, publisher)
 VALUES
 ('978-1-60129-456-2',
@@ -93,24 +94,24 @@ VALUES
 SELECT * FROM books;
 ```
 **Task 2: Update an Existing Member's Address**
-```
+```sql
 UPDATE members
 SET member_address = '125 Oak St'
 WHERE member_id = 'C103';
 ```
 **Task 3: Delete a Record from the Issued Status Table**-- Objective: Delete the record with issued_id = 'IS121' from the issued_status table.
-```
+```sql
 DELETE FROM issued_status
 WHERE   issued_id =   'IS121';
 ```
 **Task 4: Retrieve All Books Issued by a Specific Employee**-- Objective: Select all books issued by the employee with emp_id = 'E101'.
-```
+```sql
 SELECT * FROM issued_status
 WHERE issued_emp_id = 'E101'
 ```
 **Task 5: List Members Who Have Issued More Than One Book**--
  Objective: Use GROUP BY to find members who have issued more than one book.
- ```
+ ```sql
 SELECT issued_emp_id
 FROM issued_status
 GROUP BY issued_emp_id
@@ -118,7 +119,7 @@ HAVING COUNT(issued_id)>1;
 ```
 ## 3. CTAS (Create Table As Select)
 **Task 6: Create Summary Tables:** Used CTAS to generate new tables based on query results - each book and total book_issued_cnt
-```
+```sql
 CREATE TABLE book_issued_cnt AS
 SELECT a.isbn, a.book_title, COUNT(ist.issued_id) AS issue_count
 FROM issued_status as ist
@@ -130,12 +131,12 @@ GROUP BY a.isbn, a.book_title;
 The following SQL queries were used to address specific questions:
 
 **Task 7. Retrieve All Books in a Specific Category:**
-```
+```sql
 select book_title from books
 where category ='children';
 ```
 **Task 8: Find Total Rental Income by Category:**
-```
+```sql
 select *from books;
 select * from issued_status;
 select a.category,sum(rental_price)
@@ -145,12 +146,12 @@ on a.isbn=b.issued_book_isbn
 group by category;
 ```
 **task 9 ----List Members Who Registered in the Last 180 Days:**
-```
+```sql
 SELECT member_name from members
 where DATE_SUB("2024-05-01", INTERVAL -180 day);
 ```
 **task 10 List Employees with Their Branch Manager's Name and their branch details:**
-```
+```sql
 select 
  e1.emp_id,
     e1.emp_name,
@@ -167,7 +168,7 @@ employees as e2
 ON e2.emp_id = b.manager_id;
 ```
 **task 11 Create a Table of Books with Rental Price Above a Certain Threshold:**
-```
+```sql
 create table expensive_book as 
 select book_title from books
 where rental_price>7.00;
@@ -179,7 +180,7 @@ where rental_price>7.00;
 Write a query to identify members who have overdue books (assume a 30-day return period).
 Display the member's_id, member's name, book title, issue date, and days overdue.#----
 
- ```
+ ```sql
 select issued_member_id,issued_book_name,issued_date,member_name,
 current_date()-issued_date as overdue_date
 from issued_status as a
@@ -197,7 +198,7 @@ Create a query that generates a performance report for each branch,
 showing the number of books issued, the number of books returned, 
 and the total revenue generated from book rentals.
 
-```
+```sql
 CREATE TABLE branch_reports
 AS
 select br.branch_id,br.manager_id,
@@ -221,7 +222,7 @@ SELECT * FROM branch_reports;
 Use the CREATE TABLE AS (CTAS) statement to create a new table active_members 
 containing members who have issued at least one book in the last 6 months.
 
-```
+```sql
   CREATE TABLE active_members 
   AS
 select *from issued_status
@@ -237,7 +238,7 @@ SELECT *FROM ACTIVE_MEMBERS;
 Write a query to find the top 3 employees who have processed the most book issues. 
 Display the employee name, number of books processed, and their branch.
 
-```
+```sql
 CREATE TABLE TOP_3_EMPLOYEES 
 AS(
 SELECT 
